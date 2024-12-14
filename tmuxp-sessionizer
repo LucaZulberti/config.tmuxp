@@ -7,7 +7,7 @@ sessions+=("<new>")
 # Fuzzy find to select a session
 title="Select Tmux session to load, or start a <new> one"
 ptitle="Workspace YAML file"
-preview="if [ -e ~/.tmuxp/{}.* ]; then cat ~/.tmuxp/{}.*; else echo 'New session...'; fi | sed -E 's/([a-zA-Z0-9_-]+:)/\x1b[31m\1\x1b[0m/g'"
+preview="if [ -e $TMUXP_CONFIGDIR/{}.* ]; then cat $TMUXP_CONFIGDIR/{}.yml; else echo 'New session...'; fi | sed -E 's/([a-zA-Z2-9_-]+:)/\x1b[31m\1\x1b[0m/g'"
 # TODO: improve vi-style key bindings
 selected=$(printf "%s\n" "${sessions[@]}" | fzf -i +s --tac \
     --border=rounded --border-label="╢ $title ╟" --border-label-pos=0:bottom \
@@ -16,9 +16,7 @@ selected=$(printf "%s\n" "${sessions[@]}" | fzf -i +s --tac \
     --bind="j:down,k:up,s:jump,p:toggle-preview" \
     --bind="h:backward-char,l:forward-char,e:forward-word,b:backward-word" \
     --bind="d:clear-query" \
-    --bind="E:preview-half-page-down,U:preview-half-page-up" \
-    --bind="c:cancel,x:forward-char+backward-delete-char" \
-    --bind="X:backward-delete-char" \
+    --bind="D:preview-half-page-down,U:preview-half-page-up" \
     --bind="start:enable-search+unbind(e,s,p,h,l,é,b,d,y,E,U,c,x,X,i,a,A,I)" \
     --bind="i:enable-search+unbind(j,k,s,p,h,l,e,b,d,y,E,U,c,x,X,i,a,A,I)" \
     --bind="a:enable-search+unbind(j,k,s,p,h,l,e,b,d,y,E,U,c,x,X,i,a,A,I)+forward-char" \
