@@ -6,7 +6,7 @@ global_options:
 windows:
   - window_name: home
     layout: main-vertical
-    start_directory: $HOME 
+    start_directory: $HOME
     panes:
       - shell: nvim +ToggleSidebarCarbon
 
